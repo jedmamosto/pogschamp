@@ -6,7 +6,7 @@ const prisma = new PrismaClient()
 export async function GET(request: Request) {
     try {
         const pogs = await prisma.pogs.findMany()
-        return NextResponse.json(pogs)
+        return NextResponse.json(pogs, { status: 200 })
     } catch (error) {
         console.error('Error fetching pogs:', error)
         return NextResponse.json({ message: 'Internal Server Error' }, { status: 500 })
@@ -26,7 +26,7 @@ export async function POST(request: Request) {
             },
         })
 
-        return NextResponse.json(newPog)
+        return NextResponse.json(newPog, { status: 200 })
     } catch (error) {
         console.error('Error creating pog:', error)
         return NextResponse.json({ message: 'Internal Server Error' }, { status: 500 })
@@ -47,7 +47,7 @@ export async function PUT(request: Request) {
             },
         })
 
-        return NextResponse.json(updatedPog)
+        return NextResponse.json(updatedPog, { status: 200 })
     } catch (error) {
         console.error('Error updating pog:', error)
         return NextResponse.json({ message: 'Internal Server Error' }, { status: 500 })
@@ -62,7 +62,7 @@ export async function DELETE(request: Request) {
             where: { id },
         })
 
-        return NextResponse.json(deletedPog)
+        return NextResponse.json(deletedPog, { status: 200 })
     } catch (error) {
         console.error('Error deleting pog:', error)
         return NextResponse.json({ message: 'Internal Server Error' }, { status: 500 })
