@@ -1,6 +1,6 @@
 'use client'
 
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, Suspense } from 'react'
 import { useSearchParams, useRouter } from 'next/navigation'
 
 const EditPog = () => {
@@ -154,4 +154,16 @@ const EditPog = () => {
     )
 }
 
-export default EditPog
+const EditPogWithSuspense = () => (
+    <Suspense
+        fallback={
+            <div className="flex justify-center items-center h-screen ">
+                Loading...
+            </div>
+        }
+    >
+        <EditPog />
+    </Suspense>
+)
+
+export default EditPogWithSuspense
